@@ -1,11 +1,10 @@
 package Library;
 
 // Item 2: Videos
-class Videos implements Items {
+class Videos implements Item {
     private int libraryId;
     private String title;
     private String description;
-    private int returnDeadline = 14; // 2 weeks
     private double finePerDay = 1.0;
 
     public Videos(int libraryId, String title, String description) {
@@ -27,11 +26,6 @@ class Videos implements Items {
     @Override
     public String getDescription() {
         return description;
-    }
-
-    @Override
-    public int getReturnDeadline() {
-        return returnDeadline;
     }
 
     @Override

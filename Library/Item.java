@@ -1,11 +1,10 @@
 package Library;
 
 // Item interface
-public interface Items {
+public interface Item {
     int getLibraryId();
     String getTitle();
     String getDescription();
-    int getReturnDeadline();
     double getFinePerDay();
 }
 

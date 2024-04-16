@@ -1,11 +1,10 @@
 package Library;
 
 // Item 3: Journals
-class Journals implements Items {
+class Journals implements Item {
     private int libraryId;
     private String title;
     private String description;
-    private int returnDeadline = 14; // 2 weeks
     private double finePerDay = 3.0;
 
     public Journals(int libraryId, String title, String description) {
@@ -27,11 +26,6 @@ class Journals implements Items {
     @Override
     public String getDescription() {
         return description;
-    }
-
-    @Override
-    public int getReturnDeadline() {
-        return returnDeadline;
     }
 
     @Override
