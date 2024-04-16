@@ -1,11 +1,8 @@
-package Library;
 
-// Item interface
 public interface Item {
-    int getLibraryId();
+    int getId();
+    String getType();
     String getTitle();
     String getDescription();
     double getFinePerDay();
 }
-
-
