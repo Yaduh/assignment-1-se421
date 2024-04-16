@@ -1,6 +1,5 @@
-package Library;
 
 public interface Borrower {
-    int getId();
-
+    public int getId();
+    public String getBorrowerType();
 }
