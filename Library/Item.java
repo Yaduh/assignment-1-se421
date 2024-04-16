@@ -1,4 +1,4 @@
-
+package Library;
 public interface Item {
     int getId();
     String getType();

@@ -1,20 +1,20 @@
 package Library;
 
-// Item 2: Videos
-class Videos implements Item {
+class Journal implements Item {
     private int libraryId;
+    private final String itemType = "Journal";
     private String title;
     private String description;
-    private double finePerDay = 1.0;
+    private final double finePerDay = 3.0;
 
-    public Videos(int libraryId, String title, String description) {
+    public Journal(int libraryId, String title, String description) {
         this.libraryId = libraryId;
         this.title = title;
         this.description = description;
     }
 
     @Override
-    public int getLibraryId() {
+    public int getId() {
         return libraryId;
     }
 
@@ -32,5 +32,9 @@ class Videos implements Item {
     public double getFinePerDay() {
         return finePerDay;
     }
-}
 
+    @Override
+    public String getType() {
+        return itemType;
+    }
+}

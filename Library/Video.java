@@ -1,21 +1,21 @@
 package Library;
 
-// Item 4: Technical Papers
-class TechnicalPapers implements Item {
-    private int libraryId;
+class Video implements Item {
+    private int Id;
+    private final String itemType = "Video";
     private String title;
     private String description;
-    private double finePerDay = 2.0;
+    private final double finePerDay = 1.0;
 
-    public TechnicalPapers(int libraryId, String title, String description) {
-        this.libraryId = libraryId;
+    public Video(int Id, String title, String description) {
+        this.Id = Id;
         this.title = title;
         this.description = description;
     }
 
     @Override
-    public int getLibraryId() {
-        return libraryId;
+    public int getId() {
+        return Id;
     }
 
     @Override
@@ -32,4 +32,10 @@ class TechnicalPapers implements Item {
     public double getFinePerDay() {
         return finePerDay;
     }
+
+    @Override
+    public String getType() {
+        return itemType;
+    }
 }
+

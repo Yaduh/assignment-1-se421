@@ -2,7 +2,7 @@ package Library;
 
 public class Faculty implements Borrower{
     private int id;
-
+    private final String borrowerType = "Faculty";
     public Faculty(int id){
         setId(id);
     }
@@ -13,5 +13,9 @@ public class Faculty implements Borrower{
     @Override
     public int getId(){
         return this.id;
+    }
+    @Override
+    public String getBorrowerType() {
+        return borrowerType;
     }
 }

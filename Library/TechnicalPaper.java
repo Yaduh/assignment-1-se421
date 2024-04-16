@@ -1,21 +1,21 @@
 package Library;
 
-// Item 3: Journals
-class Journals implements Item {
-    private int libraryId;
+class TechnicalPaper implements Item {
+    private int Id;
+    private final String itemType = "Technical Papers";
     private String title;
     private String description;
-    private double finePerDay = 3.0;
+    private final double finePerDay = 2.0;
 
-    public Journals(int libraryId, String title, String description) {
-        this.libraryId = libraryId;
+    public TechnicalPaper(int Id, String title, String description) {
+        this.Id = Id;
         this.title = title;
         this.description = description;
     }
 
     @Override
-    public int getLibraryId() {
-        return libraryId;
+    public int getId() {
+        return Id;
     }
 
     @Override
@@ -31,5 +31,10 @@ class Journals implements Item {
     @Override
     public double getFinePerDay() {
         return finePerDay;
+    }
+
+    @Override
+    public String getType() {
+        return itemType;
     }
 }

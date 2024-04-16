@@ -3,9 +3,10 @@ package Library;
 // Item 1: Book
 class Book implements Item {
     private int libraryId;
+    private final String itemType = "Book";
     private String title;
     private String description;
-    private double finePerDay = 3.0;
+    private final double finePerDay = 3.0;
 
     public Book(int libraryId, String title, String description) {
         this.libraryId = libraryId;
@@ -14,7 +15,7 @@ class Book implements Item {
     }
 
     @Override
-    public int getLibraryId() {
+    public int getId() {
         return libraryId;
     }
 
@@ -31,5 +32,10 @@ class Book implements Item {
     @Override
     public double getFinePerDay() {
         return finePerDay;
+    }
+
+    @Override
+    public String getType() {
+        return itemType;
     }
 }
