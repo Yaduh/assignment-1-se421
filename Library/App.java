@@ -1,10 +1,10 @@
 package Library;
 public class App {
     public static void main(String[] args) {
-        Borrower b1 = new Faculty(10);
-        Borrower b2 = new Student(20);
+        Faculty b1 = new Faculty(10);
+        Student b2 = new Student(20);
 
-        Item i1 = new Book(10, "Book 1", "test book");
+        Book i1 = new Book(10, "Book 1", "test book");
         Item i2 = new Video(20, "Video 1", "test video");
 
         LibrarySystem librarySystem = new LibrarySystem();
