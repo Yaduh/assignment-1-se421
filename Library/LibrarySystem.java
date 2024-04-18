@@ -4,8 +4,8 @@ import java.util.HashMap;
 public class LibrarySystem {
     private HashMap<Integer,BorrowRecord> records = new HashMap<>();
 
-    public BorrowRecord getRecord(int ItemID){
-        return this.records.get(ItemID);
+    public BorrowRecord getRecord(int itemId){
+        return this.records.get(itemId);
     }
 
     public void addRecord(Borrower borrower,Item item){
@@ -13,9 +13,11 @@ public class LibrarySystem {
         this.records.put(item.getId(), newRecord);
         displayBorrowRecords();
     }
-    
-    public void deleteBorrowRecord(int itemID){
-        this.records.remove(itemID);
+    public void addItem(Item item){
+
+    }
+    public void deleteBorrowRecord(int itemId){
+        this.records.remove(itemId);
         displayBorrowRecords();
     }
 
