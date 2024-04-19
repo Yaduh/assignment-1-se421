@@ -1,11 +1,11 @@
 package Library;
-import java.util.Date;
+import java.time.LocalDate;
 
-public class BorrowRecord {
+class BorrowRecord {
     private Borrower borrower;
     private Item item;
-    private Date BorrowDate;
-
+    private LocalDate borrowDate;
+    private LocalDate dueDate;
     public BorrowRecord(Borrower borrower, Item item){
         setBorrowDate();
         setBorrower(borrower);
@@ -13,7 +13,11 @@ public class BorrowRecord {
     }
 
     public void setBorrowDate() {
-        this.BorrowDate = new Date();
+        this.borrowDate = LocalDate.now();
+
+    }
+    public void setDueDate() {
+        this.dueDate = borrowDate.plusDays(14);
     }
 
     public void setBorrower(Borrower borrower) {
@@ -24,8 +28,11 @@ public class BorrowRecord {
         this.item = item;
     }
 
-    public Date getBorrowDate() {
-        return this.BorrowDate;
+    public LocalDate getBorrowDate() {
+        return this.borrowDate;
+    }
+    public LocalDate getDueDate(){
+        return this.dueDate;
     }
 
     public Borrower getBorrower() {

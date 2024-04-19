@@ -32,7 +32,7 @@ abstract class Item {
         return finePerDay;
     }
 
-    public String getType() {
+    public String getItemType() {
         return itemType;
     }
     
