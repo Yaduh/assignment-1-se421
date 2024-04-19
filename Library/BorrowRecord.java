@@ -1,13 +1,13 @@
 package Library;
 import java.time.LocalDate;
 
-class LendRecord {
+class BorrowRecord {
     private Borrower borrower;
     private Item item;
     private double fine;
     private LocalDate borrowDate;
     private LocalDate dueDate;
-    public LendRecord(Borrower borrower, Item item, LocalDate borrowDate){
+    public BorrowRecord(Borrower borrower, Item item, LocalDate borrowDate){
         this.borrower = borrower;
         this.item = item;
         this.borrowDate = borrowDate;

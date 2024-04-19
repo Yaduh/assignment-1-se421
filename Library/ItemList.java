@@ -31,15 +31,19 @@ class ItemList {
         return null; 
     }
     public void displayItemList() {
-        System.out.println("Items in the list:");
+        System.out.println("---------------------------------------------------");
+        System.out.println("ID | Type              | Title              | Description          | Fine Per Day");
+        System.out.println("---------------------------------------------------");
         for (Item item : itemList) {
-            System.out.println("ID: " + item.getId());
-            System.out.println("Title: " + item.getTitle());
-            System.out.println("Description: " + item.getDescription());
-            System.out.println("Type: " + item.getItemType());
-            System.out.println("Fine Per Day: " + item.getFinePerDay());
-            System.out.println("____________");
+            System.out.printf("%-3d| %-18s| %-20s| %-20s| %.2f%n",
+                item.getId(),
+                item.getItemType(),
+                item.getTitle(),
+                item.getDescription(),
+                item.getFinePerDay());
         }
+        System.out.println("---------------------------------------------------");
     }
+    
 }
 
