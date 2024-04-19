@@ -46,17 +46,23 @@ class LibrarySystem {
         records.forEach((key, value) -> {
             Borrower b = value.getBorrower();
             Item i = value.getItem();
+            double fine = value.getFine();
             
-            System.out.printf("%-14s | %-10s | %-8s | %-11s | %-9s| -$%.2f%n",
+            // Set color based on the fine amount
+            String color = fine > 0 ? "\u001B[31m" : "\u001B[0m"; // 001B[31m sets the color to Red for positive fine, 001B[0 sets the color to default for zero or negative fine
+            
+            System.out.printf("%s%-14s | %-10s | %-8s | %-11s | %-9s| -$%.2f\u001B[0m%n",
+                color,
                 b.getBorrowerType(), 
                 b.getId(),
                 i.getItemType(), 
                 i.getId(), 
                 value.getDueDate(), 
-                value.getFine());
+                fine);
         });
         System.out.println("--------------------------------------------------------");
     }
+    
     
     
     

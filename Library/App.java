@@ -34,20 +34,22 @@ public class App {
         //test
         System.out.println("==========================\n\tStart of test");
         itemList.displayItemList();
-        librarySystem.addRecord(f1, itemList.getItemById(100), LocalDate.now());
+        librarySystem.addRecord(f1, itemList.getItemById(100), LocalDate.now()); 
         librarySystem.addRecord(f1, itemList.getItemById(101), LocalDate.now());
-        librarySystem.addRecord(f1, itemList.getItemById(102), LocalDate.now());
+        librarySystem.addRecord(f1, itemList.getItemById(102), LocalDate.now().minusWeeks(12)); // overdue
         librarySystem.addRecord(f1, itemList.getItemById(201), LocalDate.now());
-        librarySystem.addRecord(f1, itemList.getItemById(202), LocalDate.now());
-        librarySystem.addRecord(f1, itemList.getItemById(301), LocalDate.now());
-        librarySystem.addRecord(stu1, itemList.getItemById(200), LocalDate.now().minusWeeks(8));
+        librarySystem.addRecord(f1, itemList.getItemById(202), LocalDate.now().minusWeeks(4)); // overdue
+        librarySystem.addRecord(f1, itemList.getItemById(301), LocalDate.now()); // 6th input - deny borrow  
+        librarySystem.addRecord(stu1, itemList.getItemById(200), LocalDate.now().minusWeeks(8)); //overdue
 
-        librarySystem.returnRecord(stu1, itemList.getItemById(200), LocalDate.now());
-        librarySystem.returnRecord(f1, itemList.getItemById(100), LocalDate.now());
+        librarySystem.returnRecord(stu1, itemList.getItemById(200), LocalDate.now()); // fine- red
+        librarySystem.returnRecord(f1, itemList.getItemById(100), LocalDate.now()); // no fine - default color
+        librarySystem.returnRecord(f1, itemList.getItemById(202), LocalDate.now()); // fine - red
+        librarySystem.returnRecord(f1, itemList.getItemById(102), LocalDate.now()); // fine - red
         System.out.println("\tEnd of test\n==========================");
 
         System.out.println("Welcome to the Library app");
-
+        
     }
     
 }
