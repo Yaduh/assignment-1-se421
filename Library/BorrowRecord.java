@@ -6,33 +6,18 @@ class BorrowRecord {
     private Item item;
     private LocalDate borrowDate;
     private LocalDate dueDate;
-    public BorrowRecord(Borrower borrower, Item item){
-        setBorrowDate();
-        setBorrower(borrower);
-        setItem(item);
-    }
-
-    public void setBorrowDate() {
-        this.borrowDate = LocalDate.now();
-
-    }
-    public void setDueDate() {
-        this.dueDate = borrowDate.plusDays(14);
-    }
-
-    public void setBorrower(Borrower borrower) {
+    public BorrowRecord(Borrower borrower, Item item, LocalDate borrowDate){
         this.borrower = borrower;
-    }
-
-    public void setItem(Item item) {
         this.item = item;
+        this.borrowDate = borrowDate;
+        this.dueDate = borrowDate.plusWeeks(2);
     }
 
     public LocalDate getBorrowDate() {
-        return this.borrowDate;
+       return borrowDate;
     }
     public LocalDate getDueDate(){
-        return this.dueDate;
+        return dueDate;
     }
 
     public Borrower getBorrower() {

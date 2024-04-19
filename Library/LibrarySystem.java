@@ -1,4 +1,5 @@
 package Library;
+import java.time.LocalDate;
 import java.util.HashMap;
 
 class LibrarySystem {
@@ -7,8 +8,8 @@ class LibrarySystem {
         return this.records.get(itemId);
     }
 
-    public void addRecord(Borrower borrower,Item item){
-        BorrowRecord newRecord = new BorrowRecord(borrower,item);
+    public void addRecord(Borrower borrower,Item item, LocalDate borrowDate){
+        BorrowRecord newRecord = new BorrowRecord(borrower,item, borrowDate);
         this.records.put(item.getId(), newRecord);
         displayBorrowRecords();
     }
@@ -58,6 +59,7 @@ class LibrarySystem {
         });
         System.out.println("--------------------------------------------------------");
     }
+    
     
     
     
