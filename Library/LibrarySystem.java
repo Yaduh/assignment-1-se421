@@ -31,7 +31,7 @@ class LibrarySystem {
             
     }
     
-    private void displayBorrowRecords() {
+    public void displayBorrowRecords() {
         System.out.println("Lend Records:");
         System.out.println("--------------------------------------------------------");
         System.out.println("Borrower      | ID       | Item    | Library ID | Due Date | Fine");

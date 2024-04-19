@@ -31,11 +31,16 @@ public class App {
         itemList.addItem(new TechnicalPaper(402, "Optimal and Prototype Dimensioning of Electrified Drives for Automated Driving 2024-01-3021", "Electrified drives will change significantly in the wake of the further introduction of automated driving functions. Precise drive dimensioning, taking automated driving into account, opens up further potential in terms of drive operation and efficiency as well as optimal component design. Central element for unlocking the dimensioning potentials is the knowledge about the driving functions and their application. In this paper the implications of automated driving on the drive and component design are discussed. A process and a virtual toolchain for electric drive development from concept optimization to detailed component dimensioning is presented. The process is subdivided into a concept optimization part for finding the optimal drive topology and layout and a detailed prototype dimensioning process, where the final detailed drive dimensioning is carried out. Furthermore. the detailed simulation allows the drive investigation in representative customer operation as well as automated driving functions in terms of a software in the loop simulation. The process is used for the optimal dimensioning of a battery electric vehicle of the D-segment. The work focusses on a highway pilot function, developed at the Institute of Automotive Engineering of the Technische Universität Braunschweig. The optimal drive configuration is later transferred to the prototype dimensioning simulation. The simulation of automated driving function operation is based on a synthetized driving route. In addition, the routes generated in conjunction with a long-term simulation are particularly suitable for determining load spectra, which in turn can be used as test specifications for the strength simulation or endurance testing of the electric drive. Furthermore, the defined routes can be used for the definition of representative cycles applicable for the concept optimization. The results of both processes will be compared and discussed in detail with an emphasis on efficiency, performance and load spectra."));
 
         LibrarySystem librarySystem = new LibrarySystem();
+        //test
+        System.out.println("==========================\n\tStart of test");
         librarySystem.addRecord(f1, itemList.getItemById(100), LocalDate.now());
         librarySystem.addRecord(stu1, itemList.getItemById(200), LocalDate.now().minusWeeks(8));
 
         librarySystem.returnRecord(200, LocalDate.now());
+        librarySystem.returnRecord(100, LocalDate.now());
+        System.out.println("\tEnd of test\n==========================");
 
+        System.out.println("Welcome to the Library app");
     }
     
 }

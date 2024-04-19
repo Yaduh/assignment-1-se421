@@ -1,25 +1,11 @@
 package Library;
 
 class FineCalculator {
-    public double calculateFine(Item item, long daysLate) {
-        double finePerDay;
-        switch (item.getItemType()) {
-            case "Book":
-                finePerDay = 3.0;
-                break;
-            case "Journal":
-                finePerDay = 3.0;
-                break;
-            case "Video":
-                finePerDay = 1.0;
-                break;
-            case "TechnicalPaper":
-                finePerDay = 2.0;
-                break;
-            default:
-                finePerDay = 0.0;
-                break;
+        public double calculateFine(Item item, long daysLate) {
+            if (daysLate <= 0) {
+                return 0;
+            }
+            double finePerDay = item.getFinePerDay();
+            return finePerDay * daysLate;
         }
-        return finePerDay * daysLate;
     }
-}
