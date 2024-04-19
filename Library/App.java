@@ -34,7 +34,7 @@ public class App {
         librarySystem.addRecord(f1, itemList.getItemById(100), LocalDate.now());
         librarySystem.addRecord(stu1, itemList.getItemById(200), LocalDate.now().minusMonths(2));
 
-        librarySystem.deleteBorrowRecord(200);
+        librarySystem.returnRecord(200, LocalDate.now());
 
     }
     
