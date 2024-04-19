@@ -1,7 +1,7 @@
 package Library;
 
 class FineCalculator {
-    public double calculateFine(Item item, int daysLate) {
+    public double calculateFine(Item item, long daysLate) {
         double finePerDay;
         switch (item.getItemType()) {
             case "Book":

@@ -1,6 +1,6 @@
 package Library;
 import java.time.LocalDate;
-import java.time.Period;
+import java.time.Duration;
 import java.util.HashMap;
 
 class LibrarySystem {
@@ -17,14 +17,12 @@ class LibrarySystem {
         LendRecord recordToReturn = null;
                 recordToReturn = this.records.get(itemId);
             if (recordToReturn != null) {
-                Period period = Period.between(recordToReturn.getDueDate(), returnDate);
-                int daysLate = period.getDays();
-
-
+                long daysLate = Duration.between(recordToReturn.getDueDate().atStartOfDay(), returnDate.atStartOfDay()).toDays();
+                
                // fine calculation
                 recordToReturn.setFine(calculator.calculateFine(recordToReturn.getItem(), daysLate));
                 System.out.println("Item returned successfully.");
-                System.out.println(recordToReturn.getFine());
+                System.out.println(daysLate);
                 displayBorrowRecords();
                 this.records.remove(itemId);
             } else {
