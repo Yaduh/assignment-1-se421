@@ -1,15 +1,27 @@
 package Library;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
         ItemList itemList = new ItemList();
+        BorrowerList borrowerList = new BorrowerList();
         // for testing purposes
-        Borrower stu1 = new Student(1000);
-        Borrower f1 = new Faculty(2000);
-        Borrower sta1 = new Staff(3000);
 
+        // Students
+        borrowerList.addBorrower(new Student(1000));
+        borrowerList.addBorrower(new Student(1001));
+        borrowerList.addBorrower(new Student(1002));
+
+        // Faculty
+        borrowerList.addBorrower(new Faculty(2000));
+        borrowerList.addBorrower(new Faculty(2001));
+        borrowerList.addBorrower(new Faculty(2002));
+        // Staff
+        borrowerList.addBorrower(new Staff(3000));
+        borrowerList.addBorrower(new Staff(3001));
+        borrowerList.addBorrower(new Staff(3002));
         // books
         itemList.addItem(new Book(100, "It's Kind of a Funny Story", "Ambitious New York City teenager Craig Gilner is determined to succeed at life..."));
         itemList.addItem(new Book(101, "Dance Dance Dance", "High-class call girls billed to Mastercard..."));
@@ -34,22 +46,62 @@ public class App {
         //test
         System.out.println("==========================\n\tStart of test");
         itemList.displayItemList();
-        librarySystem.addRecord(f1, itemList.getItemById(100), LocalDate.now()); 
-        librarySystem.addRecord(f1, itemList.getItemById(101), LocalDate.now());
-        librarySystem.addRecord(f1, itemList.getItemById(102), LocalDate.now().minusWeeks(12)); // overdue
-        librarySystem.addRecord(f1, itemList.getItemById(201), LocalDate.now());
-        librarySystem.addRecord(f1, itemList.getItemById(202), LocalDate.now().minusWeeks(4)); // overdue
-        librarySystem.addRecord(f1, itemList.getItemById(301), LocalDate.now()); // 6th input - deny borrow  
-        librarySystem.addRecord(stu1, itemList.getItemById(200), LocalDate.now().minusWeeks(8)); //overdue
+        librarySystem.addRecord(borrowerList.getBorrowerById(1000), itemList.getItemById(100), LocalDate.now()); 
+        librarySystem.addRecord(borrowerList.getBorrowerById(1000), itemList.getItemById(101), LocalDate.now());
+        librarySystem.addRecord(borrowerList.getBorrowerById(1000), itemList.getItemById(102), LocalDate.now().minusWeeks(12)); // overdue
+        librarySystem.addRecord(borrowerList.getBorrowerById(1000), itemList.getItemById(201), LocalDate.now());
+        librarySystem.addRecord(borrowerList.getBorrowerById(1000), itemList.getItemById(202), LocalDate.now().minusWeeks(4)); // overdue
+        librarySystem.addRecord(borrowerList.getBorrowerById(1000), itemList.getItemById(301), LocalDate.now()); // 6th input - deny borrow  
+        librarySystem.addRecord(borrowerList.getBorrowerById(2000), itemList.getItemById(200), LocalDate.now().minusWeeks(8)); //overdue
 
-        librarySystem.returnRecord(stu1, itemList.getItemById(200), LocalDate.now()); // fine- red
-        librarySystem.returnRecord(f1, itemList.getItemById(100), LocalDate.now()); // no fine - default color
-        librarySystem.returnRecord(f1, itemList.getItemById(202), LocalDate.now()); // fine - red
-        librarySystem.returnRecord(f1, itemList.getItemById(102), LocalDate.now()); // fine - red
+        librarySystem.returnRecord(borrowerList.getBorrowerById(2000), itemList.getItemById(200), LocalDate.now()); // fine- red
+        librarySystem.returnRecord(borrowerList.getBorrowerById(1000), itemList.getItemById(100), LocalDate.now()); // no fine - default color
+        librarySystem.returnRecord(borrowerList.getBorrowerById(1000), itemList.getItemById(202), LocalDate.now()); // fine - red
+        librarySystem.returnRecord(borrowerList.getBorrowerById(1000), itemList.getItemById(102), LocalDate.now()); // fine - red
+        librarySystem.returnRecord(borrowerList.getBorrowerById(1000), itemList.getItemById(201), LocalDate.now());
         System.out.println("\tEnd of test\n==========================");
 
+
+        // Start of App
+        Scanner input = new Scanner(System.in);
+        int choice = -1;
+        while (choice != 0) {
+                    System.out.println("Menu:\nOperations:\n1. View items list\n2. View borrowers list(for testing purposes)\n3. Display records\n4. Add record\n5. Return record\n0. Exit");
+                    System.out.print("Enter the number corresponding to the operation you want to perform: ");
+                    choice = input.nextInt();
         System.out.println("Welcome to the Library app");
-        
+            switch (choice) {
+                case 1:
+                    itemList.displayItemList();
+                    break;
+                case 2:
+                    borrowerList.displayborrowerList();
+                    break;
+                case 3:
+                    librarySystem.displayBorrowRecords();
+                    break;
+                case 4:
+                System.out.print("Please enter the Borrower's ID: ");
+                int borrowerId = input.nextInt();
+                System.out.print("please enter the Item's Library ID: ");
+                int libraryId = input.nextInt();
+                   librarySystem.addRecord(borrowerList.getBorrowerById(borrowerId), itemList.getItemById(libraryId), LocalDate.now());
+                    break;
+                case 5:
+                System.out.print("Please enter the Borrower's ID: ");
+                borrowerId = input.nextInt();
+                System.out.print("please enter the Item's Library ID: ");
+                libraryId = input.nextInt();
+                   librarySystem.returnRecord(borrowerList.getBorrowerById(borrowerId), itemList.getItemById(libraryId), LocalDate.now());
+                    break;
+                case 0:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please select a valid option.");
+                    break;
+            }
+        }
     }
     
 }
