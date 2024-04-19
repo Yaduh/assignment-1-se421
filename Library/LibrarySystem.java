@@ -16,7 +16,6 @@ class LibrarySystem {
         }
         borrower.incrementBorrowed();
         this.records.put(item.getId(), newRecord);
-        System.out.println(borrower.getBorrowed());
         displayBorrowRecords();
     }
 
