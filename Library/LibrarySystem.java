@@ -31,7 +31,6 @@ class LibrarySystem {
                 displayBorrowRecords();
                 this.records.remove(item.getId());
                 borrower.decrementBorrowed();
-                System.out.println(borrower.getBorrowed());
             } else {
                 System.out.println("No matching lend record found.");
             }
