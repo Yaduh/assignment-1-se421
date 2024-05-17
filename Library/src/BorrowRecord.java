@@ -1,7 +1,7 @@
 
 import java.time.LocalDate;
 
-class BorrowRecord {
+class BorrowRecord implements BorrowRecordInterface{
     private Borrower borrower;
     private Item item;
     private double fine;

@@ -3,10 +3,10 @@ import java.time.LocalDate;
 import java.time.Duration;
 import java.util.HashMap;
 
-class LibrarySystem {
+class LibrarySystem implements LibrarySystemInterface {
     private FineCalculator calculator = new FineCalculator();
     private HashMap<Integer,BorrowRecord> records = new HashMap<>();
-
+    @Override
     public void addRecord(Borrower borrower, Item item, LocalDate borrowDate) {
         BorrowRecord newRecord = new BorrowRecord(borrower, item, borrowDate);
         // Check if borrower is at the borrow limit
@@ -18,7 +18,7 @@ class LibrarySystem {
         this.records.put(item.getId(), newRecord);
         displayBorrowRecords();
     }
-
+    @Override
     public void returnRecord(Borrower borrower, Item item, LocalDate returnDate){
         BorrowRecord recordToReturn = this.records.get(item.getId());
             if (recordToReturn != null) {
@@ -35,7 +35,7 @@ class LibrarySystem {
             }
             
     }
-    
+    @Override
     public void displayBorrowRecords() {
         System.out.println("Lend Records:");
         System.out.println("--------------------------------------------------------");
@@ -60,8 +60,34 @@ class LibrarySystem {
         });
         System.out.println("--------------------------------------------------------");
     }
-    
-    
+    @Override
+    public void displayItemList(ListInterface<Item> itemList) {
+        System.out.println("---------------------------------------------------");
+        System.out.println("ID | Type              | Title              | Description          | Fine Per Day");
+        System.out.println("---------------------------------------------------");
+        for (Item item : itemList.getEntityList()) {
+            System.out.printf("%-3d| %-18s| %-20s| %-20s| %.2f%n",
+                item.getId(),
+                item.getItemType(),
+                item.getTitle(),
+                item.getDescription(),
+                item.getFinePerDay());
+        }
+        System.out.println("---------------------------------------------------");
+    }
+    @Override
+    public void displayborrowerList(ListInterface<Borrower> borrowerList) {
+        System.out.println("---------------------------------------------------");
+        System.out.println("ID | Type              | Ammount of Items Borrowed");
+        System.out.println("---------------------------------------------------");
+        for (Borrower borrower : borrowerList.getEntityList()) {
+            System.out.printf("%-3d| %-9s| %-2s%n",
+                borrower.getId(),
+                borrower.getBorrowerType(),
+                borrower.getBorrowed());
+        }
+        System.out.println("---------------------------------------------------");
+    }
     
     
     

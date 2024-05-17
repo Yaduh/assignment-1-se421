@@ -1,6 +1,7 @@
 
 
-class FineCalculator {
+class FineCalculator implements FineCalculatorInterface {
+        @Override
         public double calculateFine(Item item, long daysLate) {
             if (daysLate <= 0) {
                 return 0;
