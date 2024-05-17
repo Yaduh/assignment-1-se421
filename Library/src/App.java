@@ -14,6 +14,12 @@ public class App {
         ListInterface<Borrower> borrowerList = injector.getInstance(new Key<ListInterface<Borrower>>(){});
 
         LibrarySystemInterface librarySystem = injector.getInstance(LibrarySystemInterface.class);
+
+        // Register the display for updates
+        BorrowRecordsDisplay display = new BorrowRecordsDisplay(librarySystem);
+        librarySystem.registerListener(display);
+
+
         // for testing purposes
 
         // Students
@@ -108,6 +114,8 @@ public class App {
                     break;
             }
         }
+        input.close();
     }
+    
     
 }

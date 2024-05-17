@@ -6,4 +6,6 @@ public interface LibrarySystemInterface {
     void displayBorrowRecords();
     void displayItemList(ListInterface<Item> itemList);
     void displayborrowerList(ListInterface<Borrower> borrowerList);
+    void registerListener(LibraryListener listener);
+
 }

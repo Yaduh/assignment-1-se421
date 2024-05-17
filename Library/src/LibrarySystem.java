@@ -1,11 +1,15 @@
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 import com.google.inject.Inject;
 
 class LibrarySystem implements LibrarySystemInterface {
     private final FineCalculatorInterface fineCalculator;
     private BorrowRecordFactory borrowRecordFactory;
+    private List<LibraryListener> listeners = new ArrayList<>();
 
     private HashMap<Integer,BorrowRecord> records = new HashMap<>();
 
@@ -14,34 +18,42 @@ class LibrarySystem implements LibrarySystemInterface {
         this.borrowRecordFactory = borrowRecordFactory;
         this.fineCalculator = fineCalculator;
     }
+
+    @Override
+    public void registerListener(LibraryListener listener) {
+        listeners.add(listener);
+    }
+
+    private void notifyListeners() {
+        listeners.forEach(LibraryListener::onUpdate);
+    }
+
     @Override
     public void addRecord(Borrower borrower, Item item, LocalDate borrowDate) {
-        BorrowRecord newRecord = borrowRecordFactory.create(borrower, item, borrowDate);
-        // Check if borrower is at the borrow limit
         if (borrower.getBorrowed() >= borrower.getBorrowLimit()) {
             System.out.println("Recipient is at the borrow limit.");
-            return; 
+            return;
         }
+        BorrowRecord newRecord = borrowRecordFactory.create(borrower, item, borrowDate);
         borrower.incrementBorrowed();
         this.records.put(item.getId(), newRecord);
-        displayBorrowRecords();
+        notifyListeners();
     }
-    @Override
-    public void returnRecord(Borrower borrower, Item item){
-        BorrowRecord recordToReturn = this.records.get(item.getId());
 
-            if (recordToReturn != null) {
-               // fine calculation
-                recordToReturn.setFine(fineCalculator.calculateFine(recordToReturn));
-                System.out.println("Item returned successfully.");
-                displayBorrowRecords();
-                this.records.remove(item.getId());
-                borrower.decrementBorrowed();
-            } else {
-                System.out.println("No matching lend record found.");
-            }
-            
+    @Override
+    public void returnRecord(Borrower borrower, Item item) {
+        BorrowRecord recordToReturn = this.records.get(item.getId());
+        if (recordToReturn != null) {
+            recordToReturn.setFine(fineCalculator.calculateFine(recordToReturn));
+            System.out.println("Item returned successfully.");
+            borrower.decrementBorrowed();
+            notifyListeners();
+            this.records.remove(item.getId());
+        } else {
+            System.out.println("No matching lend record found.");
+        }
     }
+
     @Override
     public void displayBorrowRecords() {
         System.out.println("Lend Records:");
@@ -95,6 +107,9 @@ class LibrarySystem implements LibrarySystemInterface {
         }
         System.out.println("---------------------------------------------------");
     }
+
+
+    
     
     
     
