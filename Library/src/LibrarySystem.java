@@ -1,14 +1,22 @@
 
 import java.time.LocalDate;
-import java.time.Duration;
 import java.util.HashMap;
+import com.google.inject.Inject;
 
 class LibrarySystem implements LibrarySystemInterface {
-    private FineCalculator calculator = new FineCalculator();
+    private final FineCalculatorInterface fineCalculator;
+    private BorrowRecordFactory borrowRecordFactory;
+
     private HashMap<Integer,BorrowRecord> records = new HashMap<>();
+
+    @Inject
+    public LibrarySystem(BorrowRecordFactory borrowRecordFactory, FineCalculatorInterface fineCalculator) {
+        this.borrowRecordFactory = borrowRecordFactory;
+        this.fineCalculator = fineCalculator;
+    }
     @Override
     public void addRecord(Borrower borrower, Item item, LocalDate borrowDate) {
-        BorrowRecord newRecord = new BorrowRecord(borrower, item, borrowDate);
+        BorrowRecord newRecord = borrowRecordFactory.create(borrower, item, borrowDate);
         // Check if borrower is at the borrow limit
         if (borrower.getBorrowed() >= borrower.getBorrowLimit()) {
             System.out.println("Recipient is at the borrow limit.");
@@ -19,13 +27,12 @@ class LibrarySystem implements LibrarySystemInterface {
         displayBorrowRecords();
     }
     @Override
-    public void returnRecord(Borrower borrower, Item item, LocalDate returnDate){
+    public void returnRecord(Borrower borrower, Item item){
         BorrowRecord recordToReturn = this.records.get(item.getId());
+
             if (recordToReturn != null) {
-                long daysLate = Duration.between(recordToReturn.getDueDate().atStartOfDay(), returnDate.atStartOfDay()).toDays();
-                
                // fine calculation
-                recordToReturn.setFine(calculator.calculateFine(recordToReturn.getItem(), daysLate));
+                recordToReturn.setFine(fineCalculator.calculateFine(recordToReturn));
                 System.out.println("Item returned successfully.");
                 displayBorrowRecords();
                 this.records.remove(item.getId());

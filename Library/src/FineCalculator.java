@@ -1,12 +1,14 @@
 
-
 class FineCalculator implements FineCalculatorInterface {
+
         @Override
-        public double calculateFine(Item item, long daysLate) {
-            if (daysLate <= 0) {
-                return 0;
+        public double calculateFine(BorrowRecord record) {
+            if (record.isOverdue()) {
+                double fineRate = record.getItem().getFinePerDay();
+                record.updateFine(fineRate);
+                return record.getFine();
+                
             }
-            double finePerDay = item.getFinePerDay();
-            return finePerDay * daysLate;
+            return 0;
         }
     }

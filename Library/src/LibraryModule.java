@@ -6,6 +6,10 @@ public class LibraryModule extends AbstractModule {
     protected void configure() {
         bind(new TypeLiteral<ListInterface<Item>>() {}).to(ItemList.class);
         bind(new TypeLiteral<ListInterface<Borrower>>() {}).to(BorrowerList.class);
-        // Add bindings for other services
+        bind(FineCalculatorInterface.class).to(FineCalculator.class);
+        bind(LibrarySystemInterface.class).to(LibrarySystem.class);
+        bind(BorrowRecordFactory.class).to(BorrowRecordFactoryImpl.class);
+
+        
     }
 }

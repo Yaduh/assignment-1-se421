@@ -12,6 +12,8 @@ public class App {
         Injector injector = Guice.createInjector(new LibraryModule());
         ListInterface<Item> itemList = injector.getInstance(new Key<ListInterface<Item>>(){});
         ListInterface<Borrower> borrowerList = injector.getInstance(new Key<ListInterface<Borrower>>(){});
+
+        LibrarySystemInterface librarySystem = injector.getInstance(LibrarySystemInterface.class);
         // for testing purposes
 
         // Students
@@ -47,7 +49,6 @@ public class App {
         itemList.addEntity(new TechnicalPaper(401, "Graph based cooperation strategies for automated vehicles in mixed traffic 2024-01-2982", "In the context of urban smart mobility, vehicles have to communicate with each other..."));
         itemList.addEntity(new TechnicalPaper(402, "Optimal and Prototype Dimensioning of Electrified Drives for Automated Driving 2024-01-3021", "Electrified drives will change significantly in the wake of the further introduction of automated driving functions..."));
 
-        LibrarySystem librarySystem = new LibrarySystem();
         //test
         System.out.println("==========================\n\tStart of test");
         librarySystem.displayItemList(itemList);
@@ -59,11 +60,11 @@ public class App {
         librarySystem.addRecord(borrowerList.getEntityById(1000), itemList.getEntityById(301), LocalDate.now()); // 6th input - deny borrow  
         librarySystem.addRecord(borrowerList.getEntityById(2000), itemList.getEntityById(200), LocalDate.now().minusWeeks(8)); //overdue
 
-        librarySystem.returnRecord(borrowerList.getEntityById(2000), itemList.getEntityById(200), LocalDate.now()); // fine- red
-        librarySystem.returnRecord(borrowerList.getEntityById(1000), itemList.getEntityById(100), LocalDate.now()); // no fine - default color
-        librarySystem.returnRecord(borrowerList.getEntityById(1000), itemList.getEntityById(202), LocalDate.now()); // fine - red
-        librarySystem.returnRecord(borrowerList.getEntityById(1000), itemList.getEntityById(102), LocalDate.now()); // fine - red
-        librarySystem.returnRecord(borrowerList.getEntityById(1000), itemList.getEntityById(201), LocalDate.now());
+        librarySystem.returnRecord(borrowerList.getEntityById(2000), itemList.getEntityById(200)); // fine- red
+        librarySystem.returnRecord(borrowerList.getEntityById(1000), itemList.getEntityById(100)); // no fine - default color
+        librarySystem.returnRecord(borrowerList.getEntityById(1000), itemList.getEntityById(202)); // fine - red
+        librarySystem.returnRecord(borrowerList.getEntityById(1000), itemList.getEntityById(102)); // fine - red
+        librarySystem.returnRecord(borrowerList.getEntityById(1000), itemList.getEntityById(201));
         System.out.println("\tEnd of test\n==========================");
 
 
@@ -97,7 +98,7 @@ public class App {
                 borrowerId = input.nextInt();
                 System.out.print("please enter the Item's Library ID: ");
                 libraryId = input.nextInt();
-                   librarySystem.returnRecord(borrowerList.getEntityById(borrowerId), itemList.getEntityById(libraryId), LocalDate.now());
+                   librarySystem.returnRecord(borrowerList.getEntityById(borrowerId), itemList.getEntityById(libraryId));
                     break;
                 case 0:
                     System.out.println("Exiting...");
