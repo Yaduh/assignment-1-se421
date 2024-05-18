@@ -15,10 +15,11 @@ public class App {
 
         LibrarySystemInterface librarySystem = injector.getInstance(LibrarySystemInterface.class);
 
-        // Register the display for updates
         BorrowRecordsDisplay display = new BorrowRecordsDisplay(librarySystem);
         librarySystem.registerListener(display);
-
+        ItemBuilder itemBuilder = new ItemBuilder();
+        
+        
 
         // for testing purposes
 
