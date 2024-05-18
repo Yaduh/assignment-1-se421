@@ -8,24 +8,24 @@ import com.google.inject.Inject;
 
 class LibrarySystem implements LibrarySystemInterface {
     private final FineCalculatorInterface fineCalculator;
-    private BorrowRecordFactory borrowRecordFactory;
-    private List<LibraryListener> listeners = new ArrayList<>();
-
-    private HashMap<Integer,BorrowRecord> records = new HashMap<>();
+    private final BorrowRecordFactory borrowRecordFactory;
+    private final List<LibraryListener> listeners = new ArrayList<>();
+    private final HashMap<Integer, BorrowRecord> records = new HashMap<>();
 
     @Inject
     public LibrarySystem(BorrowRecordFactory borrowRecordFactory, FineCalculatorInterface fineCalculator) {
         this.borrowRecordFactory = borrowRecordFactory;
         this.fineCalculator = fineCalculator;
     }
-
     @Override
     public void registerListener(LibraryListener listener) {
         listeners.add(listener);
     }
 
     private void notifyListeners() {
-        listeners.forEach(LibraryListener::onUpdate);
+        for(LibraryListener l : listeners){
+            l.onUpdate();
+        }
     }
 
     @Override
@@ -36,19 +36,19 @@ class LibrarySystem implements LibrarySystemInterface {
         }
         BorrowRecord newRecord = borrowRecordFactory.create(borrower, item, borrowDate);
         borrower.incrementBorrowed();
-        this.records.put(item.getId(), newRecord);
+        records.put(item.getId(), newRecord);
         notifyListeners();
     }
 
     @Override
     public void returnRecord(Borrower borrower, Item item) {
-        BorrowRecord recordToReturn = this.records.get(item.getId());
+        BorrowRecord recordToReturn = records.get(item.getId());
         if (recordToReturn != null) {
             recordToReturn.setFine(fineCalculator.calculateFine(recordToReturn));
             System.out.println("Item returned successfully.");
             borrower.decrementBorrowed();
             notifyListeners();
-            this.records.remove(item.getId());
+            records.remove(item.getId());
         } else {
             System.out.println("No matching lend record found.");
         }

@@ -1,5 +1,5 @@
 class BorrowRecordsDisplay implements LibraryListener {
-    private LibrarySystemInterface librarySystem;
+    private final LibrarySystemInterface librarySystem;
 
     public BorrowRecordsDisplay(LibrarySystemInterface librarySystem) {
         this.librarySystem = librarySystem;
