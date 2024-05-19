@@ -1,8 +1,8 @@
 
 
-class TechnicalPaper extends Item {
+final class TechnicalPaper extends Item {
 
-    private TechnicalPaper(int id, String title, String description) {
+    public TechnicalPaper(int id, String title, String description) {
         super(id,title,description, "Technical Papers", 2.0);
     }
 

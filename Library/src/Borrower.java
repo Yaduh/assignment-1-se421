@@ -1,9 +1,9 @@
 
 abstract class Borrower {
-    protected int id;
-    protected String borrowerType;
-    protected int borrowed = 0;
-    protected int borrowLimit = 5;
+    private final int id;
+    private final String borrowerType;
+    private int borrowed = 0;
+    private final int borrowLimit = 5;
     public Borrower(int id, String borrowerType){
         this.id = id;
         this.borrowerType = borrowerType;

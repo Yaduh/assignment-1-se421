@@ -17,44 +17,121 @@ public class App {
 
         BorrowRecordsDisplay display = new BorrowRecordsDisplay(librarySystem);
         librarySystem.registerListener(display);
-        ItemBuilder itemBuilder = new ItemBuilder();
+        ItemBuilderInterface itemBuilder = new ItemBuilder();
+        BorrowerBuilderInterface borrowerBuilder = new BorrowerBuilder();
         
         
 
         // for testing purposes
 
         // Students
-        borrowerList.addEntity(new Student(1000));
-        borrowerList.addEntity(new Student(1001));
-        borrowerList.addEntity(new Student(1002));
+        borrowerList.addEntity(borrowerBuilder.setId(1000)
+        .buildStudent()
+        .build());
+        borrowerList.addEntity(borrowerBuilder.setId(1001)
+        .buildStudent()
+        .build());
+        borrowerList.addEntity(borrowerBuilder.setId(1002)
+        .buildStudent()
+        .build());
 
         // Faculty
-        borrowerList.addEntity(new Faculty(2000));
-        borrowerList.addEntity(new Faculty(2001));
-        borrowerList.addEntity(new Faculty(2002));
+        borrowerList.addEntity(borrowerBuilder.setId(2000)
+        .buildFaculty()
+        .build());
+        borrowerList.addEntity(borrowerBuilder.setId(2001)
+        .buildFaculty()
+        .build());
+        borrowerList.addEntity(borrowerBuilder.setId(2002)
+        .buildFaculty()
+        .build());
         // Staff
-        borrowerList.addEntity(new Staff(3000));
-        borrowerList.addEntity(new Staff(3001));
-        borrowerList.addEntity(new Staff(3002));
+        borrowerList.addEntity(borrowerBuilder.setId(3000)
+        .buildStaff()
+        .build());
+        borrowerList.addEntity(borrowerBuilder.setId(3001)
+        .buildStaff()
+        .build());
+        borrowerList.addEntity(borrowerBuilder.setId(3002)
+        .buildStaff()
+        .build());
+        
         // books
-        itemList.addEntity(new Book(100, "It's Kind of a Funny Story", "Ambitious New York City teenager Craig Gilner is determined to succeed at life..."));
-        itemList.addEntity(new Book(101, "Dance Dance Dance", "High-class call girls billed to Mastercard..."));
-        itemList.addEntity(new Book(102, "The Language of Flowers", "The Victorian language of flowers was used to convey romantic expressions..."));
+        itemList.addEntity(itemBuilder.setId(100)
+        .setTitle("It's Kind of a Funny Story")
+        .setDescription("Ambitious New York City teenager Craig Gilner is determined to succeed at life...")
+        .buildBook()
+        .build());
+
+        itemList.addEntity(itemBuilder.setId(101)
+        .setTitle("Dance Dance Dance")
+        .setDescription("High-class call girls billed to Mastercard...")
+        .buildBook()
+        .build());
+
+        itemList.addEntity(itemBuilder.setId(102)
+        .setTitle("The Language of Flowers")
+        .setDescription("The Victorian language of flowers was used to convey romantic expressions...")
+        .buildBook()
+        .build());
         
         // videos
-        itemList.addEntity(new Video(200, "Happy Wheels - MOST EPIC VICTORY EVER", "This TobyGames series is a lot of fun..."));
-        itemList.addEntity(new Video(201, "How to be Ninja", "This is a dvd that shows you how to be an excellent ninja."));
-        itemList.addEntity(new Video(202, "Kanye West once said (PART 1)", "The contents of this video include iconic quotes from Ye West."));
+        itemList.addEntity(itemBuilder.setId(200)
+        .setTitle("Happy Wheels - MOST EPIC VICTORY EVER")
+        .setDescription("This TobyGames series is a lot of fun...")
+        .buildVideo()
+        .build());
+
+        itemList.addEntity(itemBuilder.setId(201)
+        .setTitle("How to be Ninja")
+        .setDescription("This is a dvd that shows you how to be an excellent ninja.")
+        .buildVideo()
+        .build());
+
+        itemList.addEntity(itemBuilder.setId(202)
+        .setTitle("Kanye West once said (PART 1)")
+        .setDescription("The contents of this video include iconic quotes from Ye West.")
+        .buildVideo()
+        .build());
 
         // journals
-        itemList.addEntity(new Journal(300, "Art History", "An international, refereed journal that promotes world-class art-historical scholarship from across the globe."));
-        itemList.addEntity(new Journal(301, "Genomics, Proteomics and Bioinformatics", "Interested in submissions across all areas of life science, biology, and biomedicine..."));
-        itemList.addEntity(new Journal(302, "British Journal of Radiology", "Covering the clinical and technical aspects of medical imaging, radiotherapy..."));
+        itemList.addEntity(itemBuilder.setId(300)
+        .setTitle("Art History")
+        .setDescription("An international, refereed journal that promotes world-class art-historical scholarship from across the globe.")
+        .buildJournal()
+        .build());
+
+        itemList.addEntity(itemBuilder.setId(301)
+        .setTitle("Genomics, Proteomics and Bioinformatics")
+        .setDescription("Interested in submissions across all areas of life science, biology, and biomedicine...")
+        .buildJournal()
+        .build());
+
+        itemList.addEntity(itemBuilder.setId(302)
+        .setTitle("British Journal of Radiology")
+        .setDescription("Covering the clinical and technical aspects of medical imaging, radiotherapy...")
+        .buildJournal()
+        .build());
 
         // technical papers
-        itemList.addEntity(new TechnicalPaper(400, "Electromagnetic Compatibility Assessment of Electric Vehicles During DC-Charging with European Combined Charging System 2024-01-3008", "The ongoing energy transition will have a profound impact on future mobility..."));
-        itemList.addEntity(new TechnicalPaper(401, "Graph based cooperation strategies for automated vehicles in mixed traffic 2024-01-2982", "In the context of urban smart mobility, vehicles have to communicate with each other..."));
-        itemList.addEntity(new TechnicalPaper(402, "Optimal and Prototype Dimensioning of Electrified Drives for Automated Driving 2024-01-3021", "Electrified drives will change significantly in the wake of the further introduction of automated driving functions..."));
+
+        itemList.addEntity(itemBuilder.setId(400)
+        .setTitle("Electromagnetic Compatibility Assessment of Electric Vehicles During DC-Charging with European Combined Charging System 2024-01-3008")
+        .setDescription("The ongoing energy transition will have a profound impact on future mobility...")
+        .buildTechnicalPaper()
+        .build());
+
+        itemList.addEntity(itemBuilder.setId(401)
+        .setTitle( "Graph based cooperation strategies for automated vehicles in mixed traffic 2024-01-2982")
+        .setDescription("In the context of urban smart mobility, vehicles have to communicate with each other...")
+        .buildTechnicalPaper()
+        .build());
+
+        itemList.addEntity(itemBuilder.setId(402)
+        .setTitle("Optimal and Prototype Dimensioning of Electrified Drives for Automated Driving 2024-01-3021")
+        .setDescription("Electrified drives will change significantly in the wake of the further introduction of automated driving functions...")
+        .buildTechnicalPaper()
+        .build());
 
         //test
         System.out.println("==========================\n\tStart of test");

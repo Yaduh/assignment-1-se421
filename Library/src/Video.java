@@ -1,8 +1,8 @@
 
 
-class Video extends Item {
+final class Video extends Item {
 
-    private Video(int libraryId, String title, String description) {
+    public Video(int libraryId, String title, String description) {
         super(libraryId, title, description, "Video", 1.0);
     }
 

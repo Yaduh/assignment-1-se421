@@ -1,8 +1,8 @@
 
 
-class Journal extends Item {
+final class Journal extends Item {
 
-    private Journal(int libraryId, String title, String description) {
+    public Journal(int libraryId, String title, String description) {
         super(libraryId, title, description, "Journal", 3.0);
     }
 

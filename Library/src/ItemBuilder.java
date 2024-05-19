@@ -1,10 +1,10 @@
-public class ItemBuilder implements Builder {
+public class ItemBuilder implements ItemBuilderInterface {
     protected int libraryId;
     protected String itemType;
     protected String title;
     protected String description;
     protected double finePerDay;
-    
+    private Item item;
     public ItemBuilder(){
         this.libraryId = 0;
         this.itemType = null;
@@ -21,27 +21,43 @@ public class ItemBuilder implements Builder {
         this.finePerDay = item.getFinePerDay();
     }
     @Override
-    public ItemBuilder setId(int libraryId) {
+    public ItemBuilderInterface setId(int libraryId) {
         this.libraryId = libraryId;
         return this;
     }
     @Override
-    public ItemBuilder setItemType(String itemType) {
-        this.itemType = itemType;
-        return this;
-    }
-    @Override
-    public ItemBuilder setTitle(String title) {
+    public ItemBuilderInterface setTitle(String title) {
         this.title = title;
         return this;
     }
     @Override
-    public ItemBuilder setDescription(String description) {
+    public ItemBuilderInterface setDescription(String description) {
         this.description = description;
         return this;
     }
     @Override
+    public ItemBuilderInterface buildBook(){
+        this.item = new Book(libraryId, title, description);
+        return this;
+    }
+    @Override
+    public ItemBuilderInterface buildJournal(){
+        this.item = new Journal(libraryId, title, description);
+        return this;
+    }
+    @Override
+    public ItemBuilderInterface buildTechnicalPaper(){
+        this.item = new TechnicalPaper(libraryId, title, description);
+        return this;
+    }
+    @Override
+    public ItemBuilderInterface buildVideo(){
+        this.item = new Video(libraryId, title, description);
+        return this;
+    }
+
+    @Override
     public Item build(){
-        return new Item(libraryId, itemType, title, description, finePerDay);
+        return item;
     }
 }

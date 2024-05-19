@@ -1,6 +1,6 @@
 
 
-public class Item {
+public abstract class Item {
     private final int libraryId;
     private final String itemType;
     private final String title;
