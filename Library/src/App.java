@@ -14,7 +14,6 @@ public class App {
         ListInterface<Borrower> borrowerList = injector.getInstance(new Key<ListInterface<Borrower>>(){});
 
         LibrarySystemInterface librarySystem = injector.getInstance(LibrarySystemInterface.class);
-
         BorrowRecordsDisplay display = new BorrowRecordsDisplay(librarySystem);
         librarySystem.registerListener(display);
         ItemBuilderInterface itemBuilder = new ItemBuilder();

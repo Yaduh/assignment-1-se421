@@ -5,18 +5,23 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
-class LibrarySystem implements LibrarySystemInterface {
+@Singleton
+public class LibrarySystem implements LibrarySystemInterface {
     private final FineCalculatorInterface fineCalculator;
     private final BorrowRecordFactory borrowRecordFactory;
-    private final List<LibraryListener> listeners = new ArrayList<>();
-    private final HashMap<Integer, BorrowRecord> records = new HashMap<>();
+    private final List<LibraryListener> listeners;
+    private final HashMap<Integer, BorrowRecord> records;
 
     @Inject
-    public LibrarySystem(BorrowRecordFactory borrowRecordFactory, FineCalculatorInterface fineCalculator) {
-        this.borrowRecordFactory = borrowRecordFactory;
+    public LibrarySystem(FineCalculatorInterface fineCalculator, BorrowRecordFactory borrowRecordFactory) {
         this.fineCalculator = fineCalculator;
+        this.borrowRecordFactory = borrowRecordFactory;
+        this.listeners = new ArrayList<>();
+        this.records = new HashMap<>();
     }
+
     @Override
     public void registerListener(LibraryListener listener) {
         listeners.add(listener);
