@@ -7,7 +7,7 @@ public class BorrowerBuilder{
     protected String borrowerType;
     protected int borrowed;
     protected int borrowLimit;
-    protected EntityCreator creator;
+    protected BorrowerCreator creator;
 
     public BorrowerBuilder(){
         this.id = 0;
@@ -21,7 +21,7 @@ public class BorrowerBuilder{
         this.borrowed = borrower.getBorrowed();
     }
     
-    public BorrowerBuilder setCreator(EntityCreator creator){
+    public BorrowerBuilder setCreator(BorrowerCreator creator){
         this.creator = creator;
         return this;
     }

@@ -9,7 +9,7 @@ public class ItemBuilder{
     protected String title;
     protected String description;
     protected double finePerDay;
-    protected EntityCreator creator;
+    protected ItemCreator creator;
     public ItemBuilder(){
         this.libraryId = 0;
         this.itemType = null;
@@ -26,7 +26,7 @@ public class ItemBuilder{
         this.finePerDay = item.getFinePerDay();
     }
 
-    public ItemBuilder setCreator(EntityCreator creator){
+    public ItemBuilder setCreator(ItemCreator creator){
         this.creator = creator;
         return this;
     }
@@ -45,6 +45,6 @@ public class ItemBuilder{
     }
 
     public Item build(){
-        return creator.createItem(libraryId);
+        return creator.createItem(libraryId, title, description);
     }
 }
