@@ -14,13 +14,13 @@ import com.librarysystem.records.*;
 
 @Singleton
 public class LibrarySystem implements LibrarySystemInterface {
-    private final FineCalculatorInterface fineCalculator;
+    private final Calculator fineCalculator;
     private final BorrowRecordFactory borrowRecordFactory;
     private final List<LibraryListener> listeners;
     private final HashMap<Integer, BorrowRecord> records;
 
     @Inject
-    public LibrarySystem(FineCalculatorInterface fineCalculator, BorrowRecordFactory borrowRecordFactory) {
+    public LibrarySystem(Calculator fineCalculator, BorrowRecordFactory borrowRecordFactory) {
         this.fineCalculator = fineCalculator;
         this.borrowRecordFactory = borrowRecordFactory;
         this.listeners = new ArrayList<>();
@@ -90,7 +90,7 @@ public class LibrarySystem implements LibrarySystemInterface {
         System.out.println("--------------------------------------------------------");
     }
     @Override
-    public void displayItemList(ListInterface<Item> itemList) {
+    public void displayItemList(EntityList<Item> itemList) {
         System.out.println("---------------------------------------------------");
         System.out.println("ID | Type              | Title              | Description          | Fine Per Day");
         System.out.println("---------------------------------------------------");
@@ -105,7 +105,7 @@ public class LibrarySystem implements LibrarySystemInterface {
         System.out.println("---------------------------------------------------");
     }
     @Override
-    public void displayborrowerList(ListInterface<Borrower> borrowerList) {
+    public void displayborrowerList(EntityList<Borrower> borrowerList) {
         System.out.println("---------------------------------------------------");
         System.out.println("ID | Type              | Ammount of Items Borrowed");
         System.out.println("---------------------------------------------------");

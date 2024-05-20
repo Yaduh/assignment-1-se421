@@ -1,19 +1,15 @@
 package com.librarysystem.builders;
 
 import com.librarysystem.entities.Item;
-import com.librarysystem.entities.Book;
-import com.librarysystem.entities.Journal;
-import com.librarysystem.entities.Video;
-import com.librarysystem.entities.TechnicalPaper;
 
 
-public class ItemBuilder implements ItemBuilderInterface {
+public class ItemBuilder{
     protected int libraryId;
     protected String itemType;
     protected String title;
     protected String description;
     protected double finePerDay;
-    private Item item;
+    protected EntityCreator creator;
     public ItemBuilder(){
         this.libraryId = 0;
         this.itemType = null;
@@ -29,44 +25,26 @@ public class ItemBuilder implements ItemBuilderInterface {
         this.description = item.getDescription();
         this.finePerDay = item.getFinePerDay();
     }
-    @Override
-    public ItemBuilderInterface setId(int libraryId) {
-        this.libraryId = libraryId;
-        return this;
-    }
-    @Override
-    public ItemBuilderInterface setTitle(String title) {
-        this.title = title;
-        return this;
-    }
-    @Override
-    public ItemBuilderInterface setDescription(String description) {
-        this.description = description;
-        return this;
-    }
-    @Override
-    public ItemBuilderInterface buildBook(){
-        this.item = new Book(libraryId, title, description);
-        return this;
-    }
-    @Override
-    public ItemBuilderInterface buildJournal(){
-        this.item = new Journal(libraryId, title, description);
-        return this;
-    }
-    @Override
-    public ItemBuilderInterface buildTechnicalPaper(){
-        this.item = new TechnicalPaper(libraryId, title, description);
-        return this;
-    }
-    @Override
-    public ItemBuilderInterface buildVideo(){
-        this.item = new Video(libraryId, title, description);
+
+    public ItemBuilder setCreator(EntityCreator creator){
+        this.creator = creator;
         return this;
     }
 
-    @Override
+    public ItemBuilder setId(int libraryId) {
+        this.libraryId = libraryId;
+        return this;
+    }
+    public ItemBuilder setTitle(String title) {
+        this.title = title;
+        return this;
+    }
+    public ItemBuilder setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
     public Item build(){
-        return item;
+        return creator.createItem(libraryId);
     }
 }

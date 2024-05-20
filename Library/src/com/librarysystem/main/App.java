@@ -17,49 +17,49 @@ import com.librarysystem.builders.*;
 public class App {
     public static void main(String... args) {
         Injector injector = Guice.createInjector(new LibraryModule());
-        ListInterface<Item> itemList = injector.getInstance(new Key<ListInterface<Item>>(){});
-        ListInterface<Borrower> borrowerList = injector.getInstance(new Key<ListInterface<Borrower>>(){});
+        EntityList<Item> itemList = injector.getInstance(new Key<EntityList<Item>>(){});
+        EntityList<Borrower> borrowerList = injector.getInstance(new Key<EntityList<Borrower>>(){});
 
         LibrarySystemInterface librarySystem = injector.getInstance(LibrarySystemInterface.class);
         BorrowRecordsDisplay display = new BorrowRecordsDisplay(librarySystem);
         librarySystem.registerListener(display);
-        ItemBuilderInterface itemBuilder = new ItemBuilder();
-        BorrowerBuilderInterface borrowerBuilder = new BorrowerBuilder();
+        ItemBuilder itemBuilder = new ItemBuilder();
+        BorrowerBuilder borrowerBuilder = new BorrowerBuilder();
         
         
 
         // for testing purposes
 
         // Students
-        borrowerList.addEntity(borrowerBuilder.setId(1000)
-        .buildStudent()
+        borrowerList.addEntity(borrowerBuilder.setCreator(Student::new)
+        .setId(1000)
         .build());
-        borrowerList.addEntity(borrowerBuilder.setId(1001)
-        .buildStudent()
+        borrowerList.addEntity(borrowerBuilder.setCreator(Student::new)
+        .setId(1001)
         .build());
-        borrowerList.addEntity(borrowerBuilder.setId(1002)
-        .buildStudent()
+        borrowerList.addEntity(borrowerBuilder.setCreator(Student::new)
+        .setId(1002)
         .build());
 
         // Faculty
-        borrowerList.addEntity(borrowerBuilder.setId(2000)
-        .buildFaculty()
+        borrowerList.addEntity(borrowerBuilder.setCreator(Faculty::new)
+        .setId(2000)
         .build());
-        borrowerList.addEntity(borrowerBuilder.setId(2001)
-        .buildFaculty()
+        borrowerList.addEntity(borrowerBuilder.setCreator(Faculty::new)
+        .setId(2001)
         .build());
-        borrowerList.addEntity(borrowerBuilder.setId(2002)
-        .buildFaculty()
+        borrowerList.addEntity(borrowerBuilder.setCreator(Faculty::new)
+        .setId(2002)
         .build());
         // Staff
-        borrowerList.addEntity(borrowerBuilder.setId(3000)
-        .buildStaff()
+        borrowerList.addEntity(borrowerBuilder.setCreator(Staff::new)
+        .setId(3000)
         .build());
-        borrowerList.addEntity(borrowerBuilder.setId(3001)
-        .buildStaff()
+        borrowerList.addEntity(borrowerBuilder.setCreator(Staff::new)
+        .setId(3001)
         .build());
-        borrowerList.addEntity(borrowerBuilder.setId(3002)
-        .buildStaff()
+        borrowerList.addEntity(borrowerBuilder.setCreator(Staff::new)
+        .setId(3002)
         .build());
         
         // books

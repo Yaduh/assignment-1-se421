@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.librarysystem.entities.Borrower;
 
-public class BorrowerList implements ListInterface<Borrower>{
+public class BorrowerList implements EntityList<Borrower>{
     private List<Borrower> borrowerList;
     
     public BorrowerList() {

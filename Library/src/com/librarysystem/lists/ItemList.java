@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.librarysystem.entities.Item;
 
-public class ItemList implements ListInterface<Item>{
+public class ItemList implements EntityList<Item>{
     private List<Item> itemList;
     
     public ItemList() {

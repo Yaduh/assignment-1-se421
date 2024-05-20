@@ -1,17 +1,13 @@
 package com.librarysystem.builders;
 
 import com.librarysystem.entities.Borrower;
-import com.librarysystem.entities.Staff;
-import com.librarysystem.entities.Student;
-import com.librarysystem.entities.Faculty;
 
-public class BorrowerBuilder implements BorrowerBuilderInterface {
+public class BorrowerBuilder{
     protected int id;
     protected String borrowerType;
     protected int borrowed;
     protected int borrowLimit;
-    protected Borrower borrower;
-    
+    protected EntityCreator creator;
 
     public BorrowerBuilder(){
         this.id = 0;
@@ -24,28 +20,19 @@ public class BorrowerBuilder implements BorrowerBuilderInterface {
         this.borrowerType = borrower.getBorrowerType();
         this.borrowed = borrower.getBorrowed();
     }
+    
+    public BorrowerBuilder setCreator(EntityCreator creator){
+        this.creator = creator;
+        return this;
+    }
 
-    public BorrowerBuilderInterface setId(int id){
+    public BorrowerBuilder setId(int id){
         this.id = id;
         return this;
     }
 
-    public BorrowerBuilderInterface buildStudent(){
-        this.borrower = new Student(id);
-        return this;
-    }
-    public BorrowerBuilderInterface buildStaff(){
-        this.borrower = new Staff(id);
-        return this;
-    }
-
-    public BorrowerBuilderInterface buildFaculty(){
-        this.borrower = new Faculty(id);
-        return this;
-    }
-
     public Borrower build(){
-        return borrower;
+        return creator.createBorrower(id);
     }
 
 }

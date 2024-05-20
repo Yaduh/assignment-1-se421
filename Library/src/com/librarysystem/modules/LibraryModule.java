@@ -10,9 +10,9 @@ import com.librarysystem.records.*;
 public class LibraryModule extends AbstractModule {
     @Override
     protected void configure() {
-        bind(new TypeLiteral<ListInterface<Item>>() {}).to(ItemList.class);
-        bind(new TypeLiteral<ListInterface<Borrower>>() {}).to(BorrowerList.class);
-        bind(FineCalculatorInterface.class).to(FineCalculator.class);
+        bind(new TypeLiteral<EntityList<Item>>() {}).to(ItemList.class);
+        bind(new TypeLiteral<EntityList<Borrower>>() {}).to(BorrowerList.class);
+        bind(Calculator.class).to(FineCalculator.class);
         bind(LibrarySystemInterface.class).to(LibrarySystem.class).in(Singleton.class);
         bind(BorrowRecordFactory.class).to(BorrowRecordFactoryImpl.class);
 

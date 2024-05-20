@@ -1,7 +1,7 @@
 package com.librarysystem.utilities;
 import com.librarysystem.records.BorrowRecord;
 
-public class FineCalculator implements FineCalculatorInterface {
+public class FineCalculator implements Calculator {
 
         @Override
         public double calculateFine(BorrowRecord record) {
