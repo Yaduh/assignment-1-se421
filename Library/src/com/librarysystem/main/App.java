@@ -7,20 +7,22 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 import com.google.inject.*;
-import com.librarysystem.lists.*;
+import com.librarysystem.lists.EntityList;
 import com.librarysystem.entities.*;
-import com.librarysystem.modules.*;
+import com.librarysystem.modules.LibraryModule;
 import com.librarysystem.records.BorrowRecordsDisplay;
-import com.librarysystem.builders.*;
+import com.librarysystem.builders.BorrowerBuilder;
+import com.librarysystem.builders.ItemBuilder;
 
 
 public class App {
     public static void main(String... args) {
         Injector injector = Guice.createInjector(new LibraryModule());
+        
         EntityList<Item> itemList = injector.getInstance(new Key<EntityList<Item>>(){});
         EntityList<Borrower> borrowerList = injector.getInstance(new Key<EntityList<Borrower>>(){});
 
-        LibrarySystemInterface librarySystem = injector.getInstance(LibrarySystemInterface.class);
+        LibraryService librarySystem = injector.getInstance(LibraryService.class);
         BorrowRecordsDisplay display = new BorrowRecordsDisplay(librarySystem);
         librarySystem.registerListener(display);
         ItemBuilder itemBuilder = new ItemBuilder();

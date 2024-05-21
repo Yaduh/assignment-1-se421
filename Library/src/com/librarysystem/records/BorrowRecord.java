@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 import com.google.inject.Inject;
-import com.librarysystem.entities.*;;
+import com.librarysystem.entities.*;
 
 public class BorrowRecord {
     private final Borrower borrower;

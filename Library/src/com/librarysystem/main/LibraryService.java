@@ -7,7 +7,7 @@ import com.librarysystem.lists.*;
 
 
 
-public interface LibrarySystemInterface {
+public interface LibraryService {
     void addRecord(Borrower borrower, Item item, LocalDate borrowDate);
     void returnRecord(Borrower borrower, Item item);
     void displayBorrowRecords();

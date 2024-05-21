@@ -13,7 +13,7 @@ import com.librarysystem.lists.*;
 import com.librarysystem.records.*;
 
 @Singleton
-public class LibrarySystem implements LibrarySystemInterface {
+public class LibrarySystem implements LibraryService {
     private final Calculator fineCalculator;
     private final BorrowRecordFactory borrowRecordFactory;
     private final List<LibraryListener> listeners;

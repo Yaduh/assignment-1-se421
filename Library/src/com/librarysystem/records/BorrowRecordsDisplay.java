@@ -1,11 +1,11 @@
 package com.librarysystem.records;
-import com.librarysystem.main.LibrarySystemInterface;
+import com.librarysystem.main.LibraryService;
 import com.librarysystem.utilities.LibraryListener;
 
 public class BorrowRecordsDisplay implements LibraryListener {
-    private final LibrarySystemInterface librarySystem;
+    private final LibraryService librarySystem;
 
-    public BorrowRecordsDisplay(LibrarySystemInterface librarySystem) {
+    public BorrowRecordsDisplay(LibraryService librarySystem) {
         this.librarySystem = librarySystem;
     }
 
