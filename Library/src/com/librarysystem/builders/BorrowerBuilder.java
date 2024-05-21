@@ -6,7 +6,7 @@ public class BorrowerBuilder{
     protected int id;
     protected String borrowerType;
     protected int borrowed;
-    protected final int borrowLimit;
+    protected int borrowLimit;
     protected BorrowerCreator creator;
 
     public BorrowerBuilder(){
@@ -19,31 +19,8 @@ public class BorrowerBuilder{
         this.id = borrower.getId();
         this.borrowerType = borrower.getBorrowerType();
         this.borrowed = borrower.getBorrowed();
-        this.borrowLimit = 5;
     }
-
-    public BorrowerBuilder(BorrowerCreator creator){
-        this.creator = creator;
-        this.borrowLimit = 5;
-    }
-    public BorrowerBuilder incrementBorrowed() {
-        if (this.borrowed < this.borrowLimit) {
-            this.borrowed++;
-        } else {
-            System.out.println("Borrow limit reached");
-        }
-        return this;
-    }
-
-    public BorrowerBuilder decrementBorrowed() {
-        if (this.borrowed > 0) {
-            this.borrowed--;
-        } else {
-            System.out.println("No borrowed items to return");
-        }
-        return this;
-    }
-
+    
     public BorrowerBuilder setCreator(BorrowerCreator creator){
         this.creator = creator;
         return this;

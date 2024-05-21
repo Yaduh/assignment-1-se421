@@ -7,7 +7,6 @@ import java.util.List;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.librarysystem.builders.BorrowerBuilder;
 import com.librarysystem.entities.*;
 import com.librarysystem.utilities.*;
 import com.librarysystem.lists.*;
@@ -45,17 +44,8 @@ public class LibrarySystem implements LibraryService {
             System.out.println("Recipient is at the borrow limit.");
             return;
         }
-        
-
-        
         BorrowRecord newRecord = borrowRecordFactory.create(borrower, item, borrowDate);
-
-        
-        BorrowerBuilder updatedBorrower = new BorrowerBuilder(borrower);
-        borrower = updatedBorrower
-                    .incrementBorrowed()
-                    .build();
-
+        borrower.incrementBorrowed();
         records.put(item.getId(), newRecord);
         notifyListeners();
     }
@@ -66,10 +56,7 @@ public class LibrarySystem implements LibraryService {
         if (recordToReturn != null) {
             recordToReturn.setFine(fineCalculator.calculateFine(recordToReturn));
             System.out.println("Item returned successfully.");
-
-            BorrowerBuilder updatedBorrower = new BorrowerBuilder(borrower);
-            borrower = updatedBorrower.decrementBorrowed().build();
-
+            borrower.decrementBorrowed();
             notifyListeners();
             records.remove(item.getId());
         } else {
