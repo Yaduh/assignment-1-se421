@@ -5,7 +5,7 @@ public abstract class Borrower {
     private final String borrowerType;
     private int borrowed = 0;
     private final int borrowLimit = 5;
-    public Borrower(int id, String borrowerType){
+    protected Borrower(int id, String borrowerType){
         this.id = id;
         this.borrowerType = borrowerType;
     }
